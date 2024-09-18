@@ -7,7 +7,7 @@
   const prisma = new PrismaClient();
 
   app.get('/', async (req, res) => {
-  res.json({message: "Welcome to Docker 🚢"});
+    res.json({message: "Welcome to Docker 🚢"});
   });
 
 // GET ALL USERS

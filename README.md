@@ -50,3 +50,7 @@ docker-compose up -d
 ```sh
 docker ps
 ```
+
+## Docker Commands
+
+For a comprehensive list of Docker commands, refer to the [Docker Commands](Docker%20Commands.md) file.
