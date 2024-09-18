@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_USER: local
+      POSTGRES_DB: postgres
+    ports:
+      - "9090:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    container_name: docker-postgres
+
+  app:
+    build:
+      context: ./
+    image: docker-demo
+    environment:
+      DATABASE_URL: "postgresql://local:12345@db:5432/postgres"
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    command: sh -c "npx prisma generate && npx prisma db push && npm run dev"
+    container_name: docker-demo-app
+
+volumes:
+  postgres_data:
